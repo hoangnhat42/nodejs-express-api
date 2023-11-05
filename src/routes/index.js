@@ -1,5 +1,6 @@
 import user from './user';
 import auth from './auth';
+import internalServerError from '../middlewares/handle_error';
 
 const initRoutes = (app) => {
 
@@ -7,11 +8,7 @@ const initRoutes = (app) => {
     app.use('/api/v1/auth', auth);
 
 
-    return app.use('/', (req, res) => {
-        return res.json({
-            message: 'Hello World'
-        })
-    })
+    app.use(internalServerError);
 }
 
 module.exports = initRoutes;
